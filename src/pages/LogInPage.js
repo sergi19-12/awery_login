@@ -6,6 +6,11 @@ export class LogInPage {
       this.usernameField = page.getByRole('textbox', { name: 'User Name *' });
       this.passwordField = page.getByRole('textbox', { name: 'Password *' });
       this.LogInButton = page.locator('awr-button').filter({ hasText: 'Log In' });
+      this.welcomeMessage = page.getByText('Welcome to Awery Log in to');
+      this.forgotPasswordLink = page.getByText('Forgot password?');
+      this.contactSupportLink = page.locator('awr-button').filter({ hasText: 'Contact Support' });
+      this.googleLoginButton = page.locator('awr-button').nth(1);
+      this.microsoftLoginButton = page.locator('awr-button').nth(2);
   }
 
   async openLoginPage() {
@@ -22,5 +27,25 @@ export class LogInPage {
 
   async clickLogInButton() {
     await this.LogInButton.click();
+  }
+
+  async assertWelcomeMessageIsVisible() {
+    await expect(this.welcomeMessage).toBeVisible();
+  }
+
+  async assertForgotPasswordLinkIsVisible() {
+    await expect(this.forgotPasswordLink).toBeVisible();
+  }
+
+  async assertContactSupportLinkIsVisible() {
+    await expect(this.contactSupportLink).toBeVisible();
+  }
+
+  async assertGoogleLoginButtonIsVisible() {
+    await expect(this.googleLoginButton).toBeVisible();
+  }
+
+  async assertMicrosoftLoginButtonIsVisible() {
+    await expect(this.microsoftLoginButton).toBeVisible();
   }
 }
